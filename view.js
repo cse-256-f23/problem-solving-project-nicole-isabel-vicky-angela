@@ -18,6 +18,7 @@ function make_file_element(file_obj) {
             </h3>
         </div>`)
 
+       
         // append children, if any:
         if( file_hash in parent_to_children) {
             let container_elem = $("<div class='folder_contents'></div>")
@@ -55,8 +56,12 @@ $('.folder').accordion({
 
 // -- Connect File Structure lock buttons to the permission dialog --
 
+  //Adding Permissions on Lock icon/button
+  $('.permbutton').append('Permissions')
+
 // open permissions dialog when a permission button is clicked
 $('.permbutton').click( function( e ) {
+
     // Set the path and open dialog:
     let path = e.currentTarget.getAttribute('path');
     perm_dialog.attr('filepath', path)
