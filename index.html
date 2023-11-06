@@ -104,7 +104,7 @@
                     </table>
                 </div>
                 <!-- structure for the Advanced dialog: -->
-                <div title="Advanced Security Settings" id="advdialog" style="overflow:hidden">
+                <div title="Advanced Security Settings" id="advdialog" style="overflow:auto">
                     <div id="advtabs">
                         <ul id="advtabs_titles">
                             <li id="advtab_title_permissions"><a href="#adv_permissions_tab"
@@ -115,6 +115,11 @@
                         </ul>
                         <div id="adv_permissions_tab">
                             <!--Object Name-->
+                            <div id="inheritance_explanation">
+                                <b>About Inheritance: </b> A file/folder <b>may</b> inherit permissions from its parent folder. When a permission setting is affected by inheritance, the corresponding checkbox is grayed out - you can't change inherited permissions.
+                                By default, this inheritance is on for all files/folders.
+                                However, you can turn off inheritance for a particular file/folder (which makes it stop inheriting permissions from its parent)
+                            </div>
                             <div id="adv_perm_object_name" class="section">Object Name: <span
                                     id="adv_perm_filepath"></span></div>
                             <div id="adv_perm_entries_text">Permission entries:</div>
