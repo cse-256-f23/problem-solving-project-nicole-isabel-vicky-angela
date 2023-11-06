@@ -211,7 +211,7 @@ function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
     let group_table = $(`
     <table id="${id_prefix}" class="ui-widget-content" width="100%">
         <tr id="${id_prefix}_header">
-            <th id="${id_prefix}_header_p" width="99%">Permissions for <span id="${id_prefix}_header_username"></span>
+            <th id="${id_prefix}_header_p" width="69%">Permissions for <span id="${id_prefix}_header_username"></span>
             </th>
             <th id="${id_prefix}_header_allow">Allow</th>
             <th id="${id_prefix}_header_deny">Deny</th>
@@ -299,7 +299,7 @@ function define_permission_checkboxes(id_prefix, which_permissions = null){
         <tr id="${id_prefix}_header">
             <th id="${id_prefix}_header_p" width="99%">Permissions for <span id="${id_prefix}_header_username"></span>
             </th>
-            <th id="${id_prefix}_header_allow">Allow</th>
+            <th id="${id_prefix}_header_allow">Allow</th> <br> </br>
             <th id="${id_prefix}_header_deny">Deny</th>
         </tr>
     </table>
@@ -446,7 +446,7 @@ user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
             },
         },
         OK: {
-            text: "OK",
+            text: "Add",
             id: "user_select_ok_button",
             click: function() {
                 // When "OK" is clicked, we want to populate some other element with the selected user name 
@@ -537,13 +537,22 @@ function define_new_user_select_field(id_prefix, select_button_text, on_user_cha
 
 // Get a (very simple) text representation of a permissions explanation
 function get_explanation_text(explanation) {
-    return `
-    Action allowed?: ${explanation.is_allowed}; 
-    Because of
-    permission set for file: ${explanation.file_responsible?get_full_path(explanation.file_responsible):'N/A'}
-    and for user: ${ explanation.ace_responsible ? get_user_name(explanation.ace_responsible.who) : 'N/A' }
-    ${ explanation.text_explanation ? `(${explanation.text_explanation})`  : '' }
-    `
+    // return `
+    // Action allowed?: ${explanation.is_allowed}; 
+    // Because of
+    // permission set for file: ${explanation.file_responsible?get_full_path(explanation.file_responsible):'N/A'}
+    // and for user: ${ explanation.ace_responsible ? get_user_name(explanation.ace_responsible.who) : 'N/A' }
+    // ${ explanation.text_explanation ? `(${explanation.text_explanation})`  : '' }
+    // `
+    if(explanation.is_allowed) {
+        return `The action is allowed because because of
+        permission set for file: ${explanation.file_responsible?get_full_path(explanation.file_responsible):'N/A'}
+        and for user: ${ explanation.ace_responsible ? get_user_name(explanation.ace_responsible.who) : 'N/A' }
+        ${ explanation.text_explanation ? `(${explanation.text_explanation})`  : '' }`
+    }
+    else {
+        return `The action is not allowed. ${ explanation.text_explanation ? `(${explanation.text_explanation})`  : '' }`
+    }
 }
 
 //---- some universal HTML set-up so you don't have to do it in each wrapper.html ----
