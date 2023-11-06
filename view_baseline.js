@@ -259,6 +259,7 @@ function open_advanced_dialog(file_path) {
 
     $('#adv_owner_current_owner').text(get_user_name(file_obj.owner))
 
+    //COMMENT THIS OUT:
     $('#adv_owner_user_list').append(all_user_list)
 
     // open dialog:
@@ -456,6 +457,8 @@ effective_user_observer.observe(document.getElementById('adv_effective_current_u
 
 // change owner button:
 $('#adv_owner_change_button').click(function() {
+    open_owner_change("adv_effective_current_user") 
+    //!!!!!COMMENT THIS OUT:
     let selected_username = $('#adv_owner_current_owner').attr('username')
     let filepath = $('#advdialog').attr('filepath')
     let file_obj = path_to_file[filepath]
@@ -465,8 +468,50 @@ $('#adv_owner_change_button').click(function() {
         emitState() // Log new state
     }
 })
+ 
+function open_owner_change(to_populate) {
+    $('#change_owner_dialog').attr('to_populate', to_populate)
+    console.log('clicked!')
+    $('#user_select_container').empty()
+    user_select_list = make_all_users_list('user_select', 'change_owner_dialog', 200)
+    $('#user_select_container').append(user_select_list)
 
+    $(`#change_owner_dialog`).dialog('open')
+}
 
+//Change owner dialog
+let change_owner_contents = $("#change_owner_dialog").dialog({
+    height: 400,
+    width: 350,
+    modal: true,
+    autoOpen: false,
+    appendTo: "#html-loc",
+    position: { my: "top", at: "top", of: $('#html-loc') },
+    buttons: {
+        Cancel: {
+            text: "Cancel",
+            id: "change_owner_cancel_button",
+            click: function() {
+                $( this ).dialog( "close" );
+            },
+        },
+        Apply: {
+            text: "Apply",
+            id: "Owner-change-apply-button",
+            click: function() {
+                let selected_username = $('#adv_owner_current_owner').attr('username')
+                let filepath = $('#advdialog').attr('filepath')
+                let file_obj = path_to_file[filepath]
+                if (selected_username && (selected_username.length > 0) && (selected_username in all_users) ) {
+                    file_obj.owner = all_users[selected_username]
+                    $('#adv_owner_current_owner').text(selected_username)
+                    emitState() // Log new state
+                }
+                $( this ).dialog( "close" );
+            }
+        }
+    }
+})
 
 // User dialog 
 let user_select_contents = $("#user_select_dialog").dialog({
@@ -510,7 +555,7 @@ let perm_entry_dialog = $('#permentry').dialog({
     position: { my: "top", at: "top", of: $('#html-loc') },
     buttons: {
         OK: {
-            text: "OK",
+            text: "Apply",
             id: "permission-entry-ok-button",
             click: function() {
                 open_advanced_dialog($('#advdialog').attr('filepath') )// redo advanced dialog (recalc permissions)

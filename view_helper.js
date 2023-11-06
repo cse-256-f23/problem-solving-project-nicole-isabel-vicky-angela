@@ -460,6 +460,40 @@ user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
     }
 })
 
+change_owner_dialog = define_new_dialog('change_owner_dialog2','Select Owner', {
+    buttons: {
+        Cancel: {
+            text: "Cancel",
+            id: "change_owner_cancel_button",
+            click: function() {
+                $( this ).dialog( "close" );
+            },
+        },
+        Apply: {
+            text: "Apply",
+            id: "Owner-change-apply-button",
+            click: function() {
+                let selected_username = $('#adv_owner_current_owner').attr('username')
+                let filepath = $('#advdialog').attr('filepath')
+                let file_obj = path_to_file[filepath]
+                if (selected_username && (selected_username.length > 0) && (selected_username in all_users) ) {
+                    file_obj.owner = all_users[selected_username]
+                    $('#adv_owner_current_owner').text(selected_username)
+                    emitState() // Log new state
+                }
+                $( this ).dialog( "close" );
+            }
+        }
+    }
+})
+
+change_owner_dialog.append(all_users_selectlist)
+
+function open_change_owner_dialog(to_populate_id) {
+    change_owner_dialog.attr('to_populate', to_populate_id)
+    change_owner_dialog.dialog('open')
+}
+
 // add stuff to the dialog:
 user_select_dialog.append(all_users_selectlist)
 
