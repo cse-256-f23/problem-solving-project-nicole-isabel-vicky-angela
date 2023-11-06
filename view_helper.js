@@ -299,7 +299,7 @@ function define_permission_checkboxes(id_prefix, which_permissions = null){
         <tr id="${id_prefix}_header">
             <th id="${id_prefix}_header_p" width="99%">Permissions for <span id="${id_prefix}_header_username"></span>
             </th>
-            <th id="${id_prefix}_header_allow">Allow</th>
+            <th id="${id_prefix}_header_allow">Allow</th> <br> </br>
             <th id="${id_prefix}_header_deny">Deny</th>
         </tr>
     </table>
@@ -446,7 +446,7 @@ user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
             },
         },
         OK: {
-            text: "OK",
+            text: "Add",
             id: "user_select_ok_button",
             click: function() {
                 // When "OK" is clicked, we want to populate some other element with the selected user name 
