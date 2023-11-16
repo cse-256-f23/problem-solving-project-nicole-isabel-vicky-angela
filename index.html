@@ -86,6 +86,33 @@
             <div data-app="gender-mag" data-mode="tracker" id="html-loc" data-tag="">
                 <!-- div where file and folder structure will be generated:-->
                 <div id="filestructure"></div>
+                <div id="instructions" style="display:inline-block;width:45%">
+                    <h3 class="h3-pad">How to Use</h3>
+                    <ul>
+                        <li>Click on "Permissions" to view and edit the permissions for a given file or folder</li>
+                        <li>See extended list of permissions in "More"</li>
+                        <li>Move popups to see instructions while editing</li>
+                    </ul>
+                    <h3 class="h3-pad">File Permission Rules</h3>
+                    <ul>
+                        <li>"Deny" permissions override "Allow"</li>
+                        <li>Direct permissions override inherited</li>
+                        <li>A file/folder may inherit permissions from its parent folder
+                            <ul>
+                                <li>Inheritance is turned on by default</li>
+                                <li>When a permission setting is affected by inheritance, the corresponding checkbox is disabled</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3 class="h3-pad">How to Identify an Error</h3>
+                    <ol>
+                        <li>Check all direct permissions for the given file/folder and user in "Permissions"</li>
+                        <li>If there are no issues, check the parent file/folder if inheritance is turned on</li>
+                        <li>Continue to check parent file/folders is needed</li>
+                        <li>Otherwise, the permission is denied</li>
+                        <li>To confirm your answer, use the "Check Permissions" panel</li>
+                    </ol>
+                </div>
                 <!-- structure for Permission Entry dialog: -->
 
                 <div title="Permission Entry" id="permentry">
@@ -115,11 +142,11 @@
                         </ul>
                         <div id="adv_permissions_tab">
                             <!--Object Name-->
-                            <div id="inheritance_explanation">
+                            <!--<div id="inheritance_explanation">
                                 <b>About Inheritance: </b> A file/folder <b>may</b> inherit permissions from its parent folder. When a permission setting is affected by inheritance, the corresponding checkbox is grayed out - you can't change inherited permissions.
                                 By default, this inheritance is on for all files/folders.
                                 However, you can turn off inheritance for a particular file/folder (which makes it stop inheriting permissions from its parent)
-                            </div>
+                            </div>-->
                             <br></br>
                             <div id="adv_perm_object_name" class="section">Object Name: <span
                                     id="adv_perm_filepath"></span></div>

@@ -97,8 +97,8 @@ console.log("file elements")
 console.log(file_elements)
 
 let title = document.createElement("h3");
-title.textContent = "Effective Permissions"
-let subtitle = document.createElement("h4")
+title.textContent = "Check Permissions"
+let subtitle = document.createElement("p")
 subtitle.textContent = "Check here to see allowable permissions on a given file and user"
 $('#sidepanel').append(title).append(subtitle);
 
@@ -132,7 +132,8 @@ file_select_dialog = define_new_dialog('file_select_dialog', 'Select File', {
                 $( this ).dialog( "close" );
             }
         }
-    }
+    },
+    width: "500px"
 })
 
 function open_file_select_dialog(to_populate_id) {
