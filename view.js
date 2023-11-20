@@ -72,6 +72,7 @@ $('.permbutton').click( function( e ) {
 });
 
 // ---- Define your dialogs  and panels here ----
+
 let all_file_elements = [];
 let all_buttons = document.getElementsByClassName("permbutton");
 
@@ -135,6 +136,13 @@ file_select_dialog = define_new_dialog('file_select_dialog', 'Select File', {
     },
     width: "500px"
 })
+
+//Reset button
+$(".reset-button").on("click", function () {
+    arr = [];
+    location.reload(true);
+  });
+
 
 function open_file_select_dialog(to_populate_id) {
     // TODO: reset selected user?..

@@ -35,7 +35,7 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
 obj_name_div = $('<div id="permdialog_objname" class="section">Current file: <span id="permdialog_objname_namespan"></span> </div>')
 
 //Make the div with the explanation about special permissions/advanced settings:
-advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">Gray checkboxes represent inherited permissions. For the extended list of special permissions click More.</div>')
+advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">Gray checkboxes represent inherited permissions. Click More for extended permissions, inheritance and owner settings.</div>')
 
 // Make the (grouped) permission checkboxes table:F
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
