@@ -21,7 +21,7 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
         },
         //Changed Advanced to More
         Advanced: {
-            text: "More",
+            text: "More...",
             id: "perm-dialog-advanced-button",
             click: function() {
                 open_advanced_dialog(perm_dialog.attr('filepath'))
@@ -32,10 +32,10 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
 
 // Make the initial "Object Name:" text:
 // If you pass in valid HTML to $(), it will *create* elements instead of selecting them. (You still have to append them, though)
-obj_name_div = $('<div id="permdialog_objname" class="section">File Path: <span id="permdialog_objname_namespan"></span> </div>')
+obj_name_div = $('<div id="permdialog_objname" class="section">Current file: <span id="permdialog_objname_namespan"></span> </div>')
 
 //Make the div with the explanation about special permissions/advanced settings:
-advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">For the extended list of special permissions click More.</div>')
+advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">Gray checkboxes represent inherited permissions. For the extended list of special permissions click More.</div>')
 
 // Make the (grouped) permission checkboxes table:F
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
@@ -47,7 +47,7 @@ file_permission_users = define_single_select_list('permdialog_file_user_list', f
     grouped_permissions.attr('username', selected_user)
 })
 file_permission_users.css({
-    'height':'80px',
+    'height':'auto',
 })
 
 // Make button to add a new user to the list:
@@ -150,7 +150,7 @@ perm_remove_user_button.click(function(){
 
 // --- Append all the elements to the permissions dialog in the right order: --- 
 perm_dialog.append(obj_name_div)
-perm_dialog.append($('<div id="permissions_user_title">Group or user names:</div>'))
+perm_dialog.append($('<div id="permissions_user_title">Users/Groups with Access:</div>'))
 perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
@@ -182,7 +182,7 @@ define_attribute_observer(perm_dialog, 'filepath', function(){
 // Make (semi-generic) selectable list of elements for all users.
 // attr_set_id is the id of the element where we should store the currently selected username.
 function make_all_users_list(id_prefix, attr_set_id, height=80) {
-    let all_user_list = $(`<div id="${id_prefix}_all_users" class="selectlist section" style="height:${height}px;overflow-y:scroll"></div>`)
+    let all_user_list = $(`<div id="${id_prefix}_all_users" class="selectlist section" style="height:auto;overflow-y:scroll"></div>`)
     for(let username in all_users) {
         let user = all_users[username]
         all_user_list.append(

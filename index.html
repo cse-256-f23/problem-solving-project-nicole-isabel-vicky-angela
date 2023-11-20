@@ -86,7 +86,7 @@
             <div data-app="gender-mag" data-mode="tracker" id="html-loc" data-tag="">
                 <!-- div where file and folder structure will be generated:-->
                 <div id="filestructure"></div>
-                <div id="instructions" style="display:inline-block;width:45%">
+                <div id="instructions" style="display:inline-block;width:40%;margin-left:40px;background-color:lightgrey;">
                     <h3 class="h3-pad how-to">How to Use</h3>
                     <ul>
                         <li>Click on "Permissions" to view and edit the permissions for a given file or folder</li>
@@ -147,11 +147,10 @@
                                 By default, this inheritance is on for all files/folders.
                                 However, you can turn off inheritance for a particular file/folder (which makes it stop inheriting permissions from its parent)
                             </div>-->
-                            <br></br>
-                            <div id="adv_perm_object_name" class="section">Object Name: <span
+                            <div id="adv_perm_object_name" class="section">Current file: <span
                                     id="adv_perm_filepath"></span></div>
                             <div id="adv_perm_entries_text">Permission entries:</div>
-                            <div id="adv_perm_table_container" style="height:200px;overflow-y:scroll"
+                            <div id="adv_perm_table_container" style="height:150px;overflow-y:scroll"
                                 class="ui-widget-content section">
                                 <table id="adv_perm_table" width="100%">
                                     <tr id="adv_perm_header">
@@ -163,7 +162,7 @@
                                 </table>
                             </div>
                             
-                            <button id="adv_perm_edit" class="ui-button ui-widget ui-corner-all">Edit...</button> <br></br>
+                            <button id="adv_perm_edit" class="ui-button ui-widget ui-corner-all">Edit...</button>
                             <div id="adv_perm_inheritance_div">
                                 <input type="checkbox" id="adv_perm_inheritance" name="inherit">
                                 <label for="adv_perm_inheritance" id="adv_perm_inheritance_label">Include inheritable
@@ -177,20 +176,19 @@
                             </div>
                         </div>
                         <div id="adv_owner_tab">
-                            <div id="adv_owner_explanation" class="section">You can take or assign ownership of this
-                                object if you have the required permissions or privileges.</div>
-                            <div id="adv_owner_object_name" class="section">Object Name: <span
+                            <div id="adv_owner_object_name" class="section">Current file: <span
                                     id="adv_owner_filepath"></span></div>
                             <div id="adv_owner_current_owner_text">Current owner:</div>
                             <div id="adv_owner_current_owner" class="ui-widget-content section"></div>
-                            <div id="adv_owner_change_owner_text">Change owner to:</div>
+                            <div id="adv_owner_change_owner_text">Select user:</div>
                             <div id="adv_owner_user_list"></div>
-                            <br></br>
+                            <div id="adv_owner_explanation" class="section">You can take or assign ownership of this
+                                file if you have the required permissions or privileges.</div>
                             <button id="adv_owner_change_button" class="ui-button ui-widget ui-corner-all">Change
-                                Owner</button>
+                                Owner to Selected User</button>
                         </div>
                         <div id="adv_effective_tab">
-                            <div id="adv_effective_object_name" class="section">Object Name: <span
+                            <div id="adv_effective_object_name" class="section">Current file: <span
                                     id="adv_effective_filepath"></span></div>
                             <div id="adv_effective_user_text">Group or user name:</div>
                             <div id="adv_effective_current_user_line" class="section">

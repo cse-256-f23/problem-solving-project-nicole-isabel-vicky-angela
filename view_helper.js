@@ -561,4 +561,5 @@ $('#filestructure').css({
     'width':'49%',
     'vertical-align': 'top'
 })
+
 $('#instructions').after('<div id="sidepanel" style=""></div>')
