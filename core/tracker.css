@@ -7,6 +7,7 @@
 #wrapper {
     position: relative;
     z-index: 1;
+    padding: 16px;
 }
 
 #html-loc {
@@ -28,3 +29,27 @@
 .top-banner-button:hover {
     background-color: rgb(255, 97, 40);
 }
+
+#sidepanel {
+    width:49%; 
+    margin-bottom:2%;
+    margin-top: 4%;
+}
+
+ul, ol {
+    margin-left: 8%;
+    padding-bottom: 8px;
+}
+
+#instructions{
+    margin-left: 8px;
+}
+
+.h3-pad {
+    padding-bottom: 4px;
+}
+
+.how-to {
+    font-size: 28px;
+}
+
