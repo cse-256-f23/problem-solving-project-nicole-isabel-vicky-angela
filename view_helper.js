@@ -555,11 +555,4 @@ function get_explanation_text(explanation) {
     }
 }
 
-//---- some universal HTML set-up so you don't have to do it in each wrapper.html ----
-$('#filestructure').css({
-    'display':'inline-block',
-    'width':'49%',
-    'vertical-align': 'top'
-})
-
-$('#instructions').after('<div id="sidepanel" style=""></div>')
+// $('#instructions').after('<div id="sidepanel" style=""></div>')

@@ -19,6 +19,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link href="core/tracker.css" rel="stylesheet" />
     <link rel="stylesheet" href="fileperms_style.css" />
+    <script src="tabs.js"></script>
 
 </head>
 
@@ -88,34 +89,12 @@
         <div id="wrapper">
             <div data-app="gender-mag" data-mode="tracker" id="html-loc" data-tag="">
                 <!-- div where file and folder structure will be generated:-->
-                <div id="filestructure"></div>
-                <div id="instructions" style="display:inline-block;width:40%;margin-left:40px;background-color:lightgrey;">
-                    <h3 class="h3-pad how-to">How to Use</h3>
-                    <ul>
-                        <li>Click on "Permissions" to view and edit the permissions for a given file or folder</li>
-                        <li>See extended list of permissions in "More"</li>
-                        <li>Move popups to see instructions while editing</li>
-                    </ul>
-                    <h3 class="h3-pad">File Permission Rules</h3>
-                    <ul>
-                        <li>"Deny" permissions override "Allow"</li>
-                        <li>Direct permissions override inherited</li>
-                        <li>A file/folder may inherit permissions from its parent folder
-                            <ul>
-                                <li>Inheritance is turned on by default</li>
-                                <li>When a permission setting is affected by inheritance, the corresponding checkbox is disabled</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <h3 class="h3-pad">How to Identify an Error</h3>
-                    <ol>
-                        <li>Check all direct permissions for the given file/folder and user in "Permissions"</li>
-                        <li>If there are no issues, check the parent file/folder if inheritance is turned on</li>
-                        <li>Continue to check parent file/folders is needed</li>
-                        <li>Otherwise, the permission is denied</li>
-                        <li>To confirm your answer, use the "Check Permissions" panel</li>
-                    </ol>
+                <div id="tabs">
+                    <button onclick="step1()">Step 1: How To Use</button>
+                    <button onclick="step2()">Step 2: Edit Permissions</button>
+                    <button onclick="step3()">Step 3: Check Permissions</button>
                 </div>
+                <div id="pageInformation"></div>
                 <!-- structure for Permission Entry dialog: -->
 
                 <div title="Permission Entry" id="permentry">
@@ -133,12 +112,6 @@
                         </tr>
                     </table>
                 </div>
-                <!--Used to insert reset button here-->
-                    <!--reset button -->
-                    <p> To refresh the page and undo all of your changes, click the Reset button. </p>
-                    <button class="ui-button ui-widget ui-corner-all reset-button" id="ui-id-56"> Reset Changes</button>
-
-                  
                 <!-- structure for the Advanced dialog: -->
                 <div title="Advanced Security Settings" id="advdialog" style="height:700px;overflow-y:auto">
                     <div id="advtabs">
