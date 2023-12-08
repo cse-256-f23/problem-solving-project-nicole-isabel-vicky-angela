@@ -54,3 +54,10 @@ ul, ol {
     font-size: 28px;
 }
 
+#permdialog_objname{
+    font-size: 18px;
+}
+
+#permdialog_objname_namespan{
+    background-color: lightsteelblue;
+}
