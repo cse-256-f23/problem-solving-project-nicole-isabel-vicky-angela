@@ -160,16 +160,10 @@ function step3() {
     var CheckPermissionTitle = '<div class="mainTxt TxtTitle">Check Result Permissions';
     $('#pageInformation').append(CheckPermissionTitle);
 
-    $('#pageInformation').append('<div id="sidepanel" style=""></div>');
+    var ChPermHowTo = '<div class="mainTxt TxtBody" style="font-size: 20px;"><ol><li>Select a user and file to check the selected user permissions on the selected file.</li><li>Click "i" icon to see explanation on what each permission includes.</li></ol></div>';
+    $('#pageInformation').append(ChPermHowTo);
 
-    let title = document.createElement("h3");
-    title.textContent = "Check Permissions"
-    let subtitle = `<ul>
-        <li>Select a user and file to check allowable permissions</li>
-        <li>Click "i" icon to see explanation</li></ul>`
-    //document.createElement("p")
-    //subtitle.textContent = "Check here to see allowable permissions on a given file and user"
-    $('#sidepanel').append(title).append(subtitle);
+    $('#pageInformation').append('<div id="sidepanel" style=""></div>');
 
     //select user
     let new_user = define_new_user_select_field("new_user", "select user", on_user_change=function(selected_user) { 

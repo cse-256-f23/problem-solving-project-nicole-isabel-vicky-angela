@@ -31,9 +31,13 @@
 }
 
 #sidepanel {
-    width:49%; 
+    width:60%; 
     margin-bottom:2%;
-    margin-top: 4%;
+    margin-left:45px;
+    padding:20px;
+    border: 2px solid #31081F;
+    border-radius: 5px;
+    background-color:floralwhite;
 }
 
 ul, ol {
@@ -76,7 +80,7 @@ ul, ol {
     margin-top:20px;
     margin-bottom: 20px;
     padding:20px;
-    width:60%;
+    width:60%; 
 }
 
 .TxtTitle{
