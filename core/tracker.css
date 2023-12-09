@@ -45,14 +45,17 @@ ul, ol {
 #instructions{
     margin-left: 8px;
     padding:15px;
+    
 }
 
 .h3-pad {
     padding-bottom: 4px;
+    
 }
 
 .how-to {
     font-size: 28px;
+    
 }
 
 #permdialog_objname{
@@ -92,6 +95,33 @@ ul, ol {
     padding-top:8px;
     font-size: 28px;
 }
+
+
+
+.collapsible {
+    background-color: rgb(121, 137, 202);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #4274ff;
+  }
+
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    line-height: 20px;
+  }
+
 
 .resetDiv {
     display:flex;
