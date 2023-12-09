@@ -103,7 +103,7 @@ ul, ol {
 
 
 .collapsible {
-    background-color: #445E59;
+    background-color: #60847c;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -115,14 +115,14 @@ ul, ol {
   }
   
   .active, .collapsible:hover {
-    background-color: #60847c;
+    background-color: #445E59;
   }
 
   .content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: whitesmoke;
     line-height: 20px;
   }
 
@@ -159,3 +159,6 @@ ul, ol {
     background: #595e44;  
 }
 
+.effective_perm_name{
+    padding-left:8px;
+}
