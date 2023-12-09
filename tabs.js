@@ -31,9 +31,9 @@ function step2() {
 
         if(file_obj.is_folder) {
             let folder_elem = $(`<div class='folder' id="${file_hash}_div" >
-                <h3 id="${file_hash}_header" style="display:flex; align-items:center;">
+                <h3 id="${file_hash}_header" style="display:flex; align-items:center; background-color:#445E59; border: 1px solid #31081F;">
                 <span class="oi oi-folder" id="${file_hash}_icon" style="padding:4px; margin-right:8px;"/> <b>${file_obj.filename}</b>
-                <div style="width:100%; display:flex; justify-content:right"> <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
+                <div style="width:100%; display:flex; justify-content:right;"> <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                 </button></div>
                 </h3>
             </div>`)
@@ -156,6 +156,9 @@ function step2() {
 
 function step3() {
     $('#pageInformation').children().remove();
+
+    var CheckPermissionTitle = '<div class="mainTxt TxtTitle">Check Result Permissions';
+    $('#pageInformation').append(CheckPermissionTitle);
 
     $('#pageInformation').append('<div id="sidepanel" style=""></div>');
 
