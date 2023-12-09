@@ -249,7 +249,6 @@ function step3() {
     let new_dialog = define_new_dialog("new dialog", "dialog");
 
     $('.perm_info').click(function(){
-        console.log('clicked!')
         let filepath = $('#new_permission').attr('filepath')
         let user = $('#new_permission').attr('username')
         let perm = $(this).attr('permission_name')
