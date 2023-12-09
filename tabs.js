@@ -1,13 +1,23 @@
+//let file_elements_step2 = []
+
 function step1() {
     // remove other elements
     $('#pageInformation').children().remove();
 
     // add text
-    var howTo = '<div><ul><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ul></div>';
+    var howToTitle = '<div class="mainTxt TxtTitle">How To Use';
+    var howTo = '<div class="mainTxt TxtBody"><ol><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>';
+    // let howToDiv = `
+    // <div class="mainTxt">
+    // <div class="TxtTitle">How To Use
+    // <div class="TxtBody"><ol><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>
+    // </div>
+    // `
+    $('#pageInformation').append(howToTitle);
     $('#pageInformation').append(howTo);
 }
 
-// everything thsould save when clicking around tabs but should double check
+// everything should save when clicking around tabs but should double check
 function step2() {
     $('#pageInformation').children().remove();
 
@@ -16,44 +26,46 @@ function step2() {
 
     // make file structure
     function make_file_element(file_obj) {
-    let file_hash = get_full_path(file_obj)
+        let file_hash = get_full_path(file_obj)
 
-    if(file_obj.is_folder) {
-        let folder_elem = $(`<div class='folder' id="${file_hash}_div">
-            <h3 id="${file_hash}_header">
-                <span class="oi oi-folder" id="${file_hash}_icon"/> ${file_obj.filename} 
+        if(file_obj.is_folder) {
+            let folder_elem = $(`<div class='folder' id="${file_hash}_div">
+                <h3 id="${file_hash}_header">
+                    <span class="oi oi-folder" id="${file_hash}_icon"/> ${file_obj.filename} 
+                    <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
+                        
+                    </button>
+                </h3>
+            </div>`)
+
+        
+            // append children, if any:
+            if( file_hash in parent_to_children) {
+                let container_elem = $("<div class='folder_contents'></div>")
+                folder_elem.append(container_elem)
+                for(child_file of parent_to_children[file_hash]) {
+                    let child_elem = make_file_element(child_file)
+                    container_elem.append(child_elem)
+                }
+            }
+            return folder_elem
+        }
+        else {
+            return $(`<div class='file'  id="${file_hash}_div">
+                <span class="oi oi-file" id="${file_hash}_icon"/> ${file_obj.filename}
                 <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                     
                 </button>
-            </h3>
-        </div>`)
-
-       
-        // append children, if any:
-        if( file_hash in parent_to_children) {
-            let container_elem = $("<div class='folder_contents'></div>")
-            folder_elem.append(container_elem)
-            for(child_file of parent_to_children[file_hash]) {
-                let child_elem = make_file_element(child_file)
-                container_elem.append(child_elem)
-            }
+            </div>`)
         }
-        return folder_elem
-    }
-    else {
-        return $(`<div class='file'  id="${file_hash}_div">
-            <span class="oi oi-file" id="${file_hash}_icon"/> ${file_obj.filename}
-            <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
-                
-            </button>
-        </div>`)
-    }
     }
 
+    console.log("root files in step2")
     console.log(root_files)
     for(let root_file of root_files) {
         let file_elem = make_file_element(root_file);
         $( "#filestructure" ).append( file_elem);  
+        console.log(file_elem)
     }
 
     // make folder hierarchy into an accordion structure
@@ -128,6 +140,13 @@ function step2() {
         <p> To refresh the page and undo all of your changes, click the Reset button. </p>
         <button class="ui-button ui-widget ui-corner-all reset-button" id="ui-id-56" onclick="resetFunction()"> Reset Changes</button>`;
     $('#pageInformation').append(reset);
+
+
+    // some setup to save all files
+    // let all_buttons = document.getElementsByClassName("permbutton");
+    // for(let button of all_buttons) {
+    //     file_elements_step2.push(button.getAttribute("path")); 
+    // }
 }
 
 function step3() {
@@ -137,8 +156,11 @@ function step3() {
 
     let title = document.createElement("h3");
     title.textContent = "Check Permissions"
-    let subtitle = document.createElement("p")
-    subtitle.textContent = "Check here to see allowable permissions on a given file and user"
+    let subtitle = `<ul>
+        <li>Select a user and file to check allowable permissions</li>
+        <li>Click "i" icon to see explanation</li></ul>`
+    //document.createElement("p")
+    //subtitle.textContent = "Check here to see allowable permissions on a given file and user"
     $('#sidepanel').append(title).append(subtitle);
 
     //select user
@@ -147,6 +169,20 @@ function step3() {
     });
     $('#sidepanel').append(new_user);
 
+    // a list of just file names
+    files = Object.keys(path_to_file)
+    file_elements = []//
+    for (let i = 0; i < files.length; i++) {
+        file_elements.push(make_user_elem('file_select', files[i]))
+    }
+
+    all_files_selectlist = define_single_select_list('file_select_list')
+
+    // Make the elements which reperesent all users, and add them to the selectable
+
+    all_files_selectlist.append(file_elements)      
+    console.log("all files select list step 3")
+    console.log(all_files_selectlist)
 
     file_select_dialog = define_new_dialog('file_select_dialog', 'Select File', {
         buttons: {
@@ -173,20 +209,15 @@ function step3() {
         width: "500px"
     })
 
-
-    all_files_selectlist = define_single_select_list('file_select_list')
-
-    // Make the elements which reperesent all users, and add them to the selectable
-    console.log("file elements ")
-    console.log(file_elements)
-    all_files_selectlist.append(file_elements)  
+    // add stuff to the dialog:
+    file_select_dialog.append(all_files_selectlist)
 
 
     //select object
     let new_file = define_new_file_select_field("new_file", "select file", on_file_change=function(selected_file) {
         $('#new_permission').attr('filepath', selected_file);
-        console.log("deinfe new file select")
-        console.log($('#new_permission').attr('filepath', selected_file))
+        //console.log("deinfe new file select")
+        //console.log($('#new_permission').attr('filepath', selected_file))
     });
     $('#sidepanel').append(new_file);
 
@@ -205,49 +236,46 @@ function step3() {
         new_dialog.text(get_explanation_text(action_obj))
         new_dialog.dialog('open')
     })
+
+    function open_file_select_dialog(to_populate_id) {
+        // TODO: reset selected user?..
+    
+        // add stuff to the dialog:
+        file_select_dialog.append(all_files_selectlist)
+    
+        file_select_dialog.attr('to_populate', to_populate_id)
+        file_select_dialog.dialog('open')
     }
+    // file select
+    function define_new_file_select_field(id_prefix, select_button_text, on_file_change = function(selected_user){}){
+        // Make the element:
+        let sel_section = $(`<div id="${id_prefix}_line" class="section">
+                <span id="${id_prefix}_field" class="ui-widget-content" style="width: 80%;display: inline-block;">&nbsp</span>
+                <button id="${id_prefix}_button" class="ui-button ui-widget ui-corner-all">${select_button_text}</button>
+            </div>`)
+
+        // Open user select on button click:
+        sel_section.find(`#${id_prefix}_button`).click(function(){
+            open_file_select_dialog(`${id_prefix}_field`)
+        })
+
+        // Set up an observer to watch the attribute change and change the field
+        let field_selector = sel_section.find(`#${id_prefix}_field`)
+        define_attribute_observer(field_selector, 'selected_file', function(new_file){
+            field_selector.text(new_file)
+            // call the function for additional processing of user change:
+            on_file_change(new_file)
+        })
+
+        return sel_section
+    }
+}
 
 function resetFunction() {
     //arr = [];
     location.reload(true);
     // step2() -> nothing here gets called after reload bc the page reloads so the code reloads, so 
     // we need to find another way to get the reload to occur but then click the button to stay on the same tab
-}
-
-function open_file_select_dialog(to_populate_id) {
-    // TODO: reset selected user?..
-
-
-
-    // add stuff to the dialog:
-    file_select_dialog.append(all_files_selectlist)
-
-    file_select_dialog.attr('to_populate', to_populate_id)
-    file_select_dialog.dialog('open')
-}
-
-// file select
-function define_new_file_select_field(id_prefix, select_button_text, on_file_change = function(selected_user){}){
-    // Make the element:
-    let sel_section = $(`<div id="${id_prefix}_line" class="section">
-            <span id="${id_prefix}_field" class="ui-widget-content" style="width: 80%;display: inline-block;">&nbsp</span>
-            <button id="${id_prefix}_button" class="ui-button ui-widget ui-corner-all">${select_button_text}</button>
-        </div>`)
-
-    // Open user select on button click:
-    sel_section.find(`#${id_prefix}_button`).click(function(){
-        open_file_select_dialog(`${id_prefix}_field`)
-    })
-
-    // Set up an observer to watch the attribute change and change the field
-    let field_selector = sel_section.find(`#${id_prefix}_field`)
-    define_attribute_observer(field_selector, 'selected_file', function(new_file){
-        field_selector.text(new_file)
-        // call the function for additional processing of user change:
-        on_file_change(new_file)
-    })
-
-    return sel_section
 }
 
 $('#html-loc').find('*').uniqueId() 
