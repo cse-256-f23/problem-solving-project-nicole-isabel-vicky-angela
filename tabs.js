@@ -109,9 +109,11 @@ function step2() {
         <div id="instructions" style="display:inline-block;width:40%;margin-left:40px;background-color:lightgrey;">
             <center> <h3 class="h3-pad how-to">User Guide</h3> </center>
             <br>
+
             <p> *To refresh the page and undo all of your changes, click the <strong>Reset </strong> button </p> <br>
-            <button type ="button" class="collapsible"> <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span> <strong>Add/Remove Permissions for a User </strong></button> 
-            <div class="content">
+            <button type ="button" class="collapsible"> <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"> </span> <strong>Add/Remove Permissions for a User</strong></button> 
+            <div class="content"> 
+        
             <p>
             <ol> 
                 <li> Click <strong> Edit Permissions </strong> for the name of the file or folder you want to edit </li> 
