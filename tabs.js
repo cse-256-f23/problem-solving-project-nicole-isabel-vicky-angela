@@ -213,8 +213,7 @@ function step3() {
     all_files_selectlist.append(file_elements)  
 
 
-// add stuff to the dialog:
-file_select_dialog.append(all_files_selectlist)
+    // add stuff to the dialog:
     file_select_dialog = define_new_dialog('file_select_dialog', 'Select File', {
         buttons: {
             Cancel: {
@@ -239,6 +238,8 @@ file_select_dialog.append(all_files_selectlist)
         },
         width: "500px"
     })
+
+    file_select_dialog.append(all_files_selectlist)
 
     //select object
     let new_file = define_new_file_select_field("new_file", "select file", on_file_change=function(selected_file) {
