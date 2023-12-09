@@ -3,7 +3,9 @@ function step1() {
     $('#pageInformation').children().remove();
 
     // add text
-    var howTo = '<div><ul><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ul></div>';
+    var howToTitle = '<div class="mainTxt TxtTitle">How to Use';
+    $('#pageInformation').append(howToTitle);
+    var howTo = '<div class="mainTxt TxtBody"><ol><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>';
     $('#pageInformation').append(howTo);
 }
 
@@ -179,7 +181,7 @@ function step3() {
     var CheckPermissionTitle = '<div class="mainTxt TxtTitle">Check Result Permissions';
     $('#pageInformation').append(CheckPermissionTitle);
 
-    var ChPermHowTo = '<div class="mainTxt TxtBody" style="font-size: 20px;"><ol><li>Select a user and file to check the selected user permissions on the selected file.</li><li>Click "i" icon to see explanation on what each permission includes.</li></ol></div>';
+    var ChPermHowTo = '<div class="mainTxt TxtBody" style="font-size: 20px;"><ol><li>Check here to see effective permissions on a selected file and user.</li><li>Click "i" icon to see explanation on what each permission includes.</li></ol></div>';
     $('#pageInformation').append(ChPermHowTo);
 
     $('#pageInformation').append('<div id="sidepanel" style=""></div>');
@@ -196,7 +198,23 @@ function step3() {
     });
     $('#sidepanel').append(new_user);
 
+    // a list of just file names
+    files = Object.keys(path_to_file)
+    file_elements = []//
+    for (let i = 0; i < files.length; i++) {
+        file_elements.push(make_user_elem('file_select', files[i]))
+    }
 
+    all_files_selectlist = define_single_select_list('file_select_list')
+
+    // Make the elements which reperesent all users, and add them to the selectable
+    console.log("file elements ")
+    console.log(file_elements)
+    all_files_selectlist.append(file_elements)  
+
+
+// add stuff to the dialog:
+file_select_dialog.append(all_files_selectlist)
     file_select_dialog = define_new_dialog('file_select_dialog', 'Select File', {
         buttons: {
             Cancel: {
@@ -221,15 +239,6 @@ function step3() {
         },
         width: "500px"
     })
-
-
-    all_files_selectlist = define_single_select_list('file_select_list')
-
-    // Make the elements which reperesent all users, and add them to the selectable
-    console.log("file elements ")
-    console.log(file_elements)
-    all_files_selectlist.append(file_elements)  
-
 
     //select object
     let new_file = define_new_file_select_field("new_file", "select file", on_file_change=function(selected_file) {
