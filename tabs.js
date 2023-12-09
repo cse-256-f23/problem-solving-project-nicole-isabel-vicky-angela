@@ -20,7 +20,7 @@ function step1() {
 // everything should save when clicking around tabs but should double check
 function step2() {
     $('#pageInformation').children().remove();
-    
+
     var EditPermissionTitle = '<div class="mainTxt TxtTitle">Edit File Permissions';
     $('#pageInformation').append(EditPermissionTitle);
 
@@ -104,7 +104,7 @@ function step2() {
 
     // add rules
     var instructions = 
-        `<div id="instructions" style="display:inline-block;width:40%;margin-left:40px;background-color:lightgrey;">
+        `<div id="instructions" style="display:inline-block;width:40%;margin-left:40px;">
             <center> <h3 class="h3-pad how-to">User Guide</h3> </center>
 
             <h3> Add/Remove Permissions for a User </h3>

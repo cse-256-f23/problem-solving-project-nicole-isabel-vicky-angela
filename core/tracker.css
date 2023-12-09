@@ -63,6 +63,14 @@ ul, ol {
     background-color: wheat;
 }
 
+#instructions{
+    border-radius: 8px;
+    color:darkslategrey;
+    border: 2px solid #31081F;
+    border-radius: 5px;
+    background-color:floralwhite;
+}
+
 .mainTxt{
     font-weight:300;
     margin-top:20px;
@@ -73,13 +81,34 @@ ul, ol {
 
 .TxtTitle{
     font-size: 40px;
-    border-radius: 15px;
     background-color:wheat;
     color:darkslategrey;
+    border-left: 8px solid #31081F;
+    width:100%;
 }
 
 .TxtBody{
     margin-top:5px;
     padding-top:8px;
     font-size: 28px;
+}
+
+/* accordion style */
+.ui-accordion-header{
+    border: 1px solid #31081F;
+    background: #445E59;  
+    color: white; 
+}
+
+.ui-accordion-header-active{
+    background: #445E59;  
+}
+
+.ui-accordion-header-collapsed{
+    background: lightgrey;
+    color:#31081F;
+}
+
+.ui-state-active{
+    background: #445E59;  
 }
