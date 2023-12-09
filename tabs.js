@@ -3,19 +3,11 @@ function step1() {
     $('#pageInformation').children().remove();
 
     // add text
-    var howToTitle = '<div class="mainTxt TxtTitle">How To Use';
-    var howTo = '<div class="mainTxt TxtBody"><ol><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>';
-    // let howToDiv = `
-    // <div class="mainTxt">
-    // <div class="TxtTitle">How To Use
-    // <div class="TxtBody"><ol><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>
-    // </div>
-    // `
-    $('#pageInformation').append(howToTitle);
+    var howTo = '<div><ul><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ul></div>';
     $('#pageInformation').append(howTo);
 }
 
-// everything should save when clicking around tabs but should double check
+// everything thsould save when clicking around tabs but should double check
 function step2() {
     $('#pageInformation').children().remove();
 
@@ -27,7 +19,7 @@ function step2() {
 
     // make file structure
     function make_file_element(file_obj) {
-        let file_hash = get_full_path(file_obj)
+    let file_hash = get_full_path(file_obj)
 
         if(file_obj.is_folder) {
             let folder_elem = $(`<div class='folder' id="${file_hash}_div" >
@@ -65,12 +57,10 @@ function step2() {
         }
     }
 
-    console.log("root files in step2")
     console.log(root_files)
     for(let root_file of root_files) {
         let file_elem = make_file_element(root_file);
         $( "#filestructure" ).append( file_elem);  
-        console.log(file_elem)
     }
 
     // make folder hierarchy into an accordion structure
@@ -111,23 +101,35 @@ function step2() {
 
     // add rules
     var instructions = 
-        `<div id="instructions" style="display:inline-block;width:40%;margin-left:40px;">
-            <center> <h3 class="h3-pad how-to">User Guide</h3> </center>
 
-            <h3> Add/Remove Permissions for a User </h3>
+        
+        `
+        
+        <div id="instructions" style="display:inline-block;width:40%;margin-left:40px;background-color:lightgrey;">
+            <center> <h3 class="h3-pad how-to">User Guide</h3> </center>
+            <br>
+            <p> *To refresh the page and undo all of your changes, click the <strong>Reset </strong> button </p> <br>
+            <button type ="button" class="collapsible"> <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span> <strong>Add/Remove Permissions for a User </strong></button> 
+            <div class="content">
+            <p>
             <ol> 
                 <li> Click <strong> Edit Permissions </strong> for the name of the file or folder you want to edit </li> 
                 <li> Select the <strong> Users/Group </strong> whose permissions you want to edit </li>
                 <ul>    
                     <li> If the user isn't listed, click <strong> Add User </strong> and add the user </li> 
-                    <li> To remove a user from the file or folder, click on a User and then click <strong> Remove User </strong></li>
+                    <li> To remove a user from the file or folder, click on a User and then <strong> Remove User </strong></li>
                 </ul>
                 <li> From the list of Permissions, click either <strong> Allow </strong> or <strong>Deny </strong> to change permissions </li> 
                 <ul> 
                     <li> If both <strong> Allow </strong> and <strong>Deny</strong> are checked, <strong>Deny</strong> overrides <strong>Allow</strong></li>
                 </ul>
             </ol>
-            <h3> Find and Fix Errors </h3>
+            </p>
+            </div>
+
+            <button type="button" class="collapsible"> <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span> <strong> Find and Fix Errors </strong> </button>
+            <div class="content"> 
+            <p>
             <ol> 
                 <li> Check all direct permissions for the given file/folder by clicking on the <strong>Edit Permissions</strong> button </li> 
                 <li>If there are no issues, go to <strong>More</strong> and check if inheritance is turned on with the blue check mark </li> 
@@ -138,11 +140,28 @@ function step2() {
                 <li> Otherwise, the permission is denied </li> 
                 <li> To check the permissions for a specific user and file go to “Step 3: Check Permissions”</li> 
             </ol>
-
+            </p>
 
 
         </div>`;
     $('#pageInformation').append(instructions);
+
+    var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+    document.getElementById("instructions").style.background = "wheat"; 
     
 
     // add reset button
@@ -165,26 +184,18 @@ function step3() {
 
     $('#pageInformation').append('<div id="sidepanel" style=""></div>');
 
+    let title = document.createElement("h3");
+    title.textContent = "Check Permissions"
+    let subtitle = document.createElement("p")
+    subtitle.textContent = "Check here to see allowable permissions on a given file and user"
+    $('#sidepanel').append(title).append(subtitle);
+
     //select user
     let new_user = define_new_user_select_field("new_user", "select user", on_user_change=function(selected_user) { 
         $('#new_permission').attr('username', selected_user);
     });
     $('#sidepanel').append(new_user);
 
-    // a list of just file names
-    files = Object.keys(path_to_file)
-    file_elements = []//
-    for (let i = 0; i < files.length; i++) {
-        file_elements.push(make_user_elem('file_select', files[i]))
-    }
-
-    all_files_selectlist = define_single_select_list('file_select_list')
-
-    // Make the elements which reperesent all users, and add them to the selectable
-
-    all_files_selectlist.append(file_elements)      
-    console.log("all files select list step 3")
-    console.log(all_files_selectlist)
 
     file_select_dialog = define_new_dialog('file_select_dialog', 'Select File', {
         buttons: {
@@ -211,15 +222,20 @@ function step3() {
         width: "500px"
     })
 
-    // add stuff to the dialog:
-    file_select_dialog.append(all_files_selectlist)
+
+    all_files_selectlist = define_single_select_list('file_select_list')
+
+    // Make the elements which reperesent all users, and add them to the selectable
+    console.log("file elements ")
+    console.log(file_elements)
+    all_files_selectlist.append(file_elements)  
 
 
     //select object
     let new_file = define_new_file_select_field("new_file", "select file", on_file_change=function(selected_file) {
         $('#new_permission').attr('filepath', selected_file);
-        //console.log("deinfe new file select")
-        //console.log($('#new_permission').attr('filepath', selected_file))
+        console.log("deinfe new file select")
+        console.log($('#new_permission').attr('filepath', selected_file))
     });
     $('#sidepanel').append(new_file);
 
@@ -238,46 +254,49 @@ function step3() {
         new_dialog.text(get_explanation_text(action_obj))
         new_dialog.dialog('open')
     })
-
-    function open_file_select_dialog(to_populate_id) {
-        // TODO: reset selected user?..
-    
-        // add stuff to the dialog:
-        file_select_dialog.append(all_files_selectlist)
-    
-        file_select_dialog.attr('to_populate', to_populate_id)
-        file_select_dialog.dialog('open')
     }
-    // file select
-    function define_new_file_select_field(id_prefix, select_button_text, on_file_change = function(selected_user){}){
-        // Make the element:
-        let sel_section = $(`<div id="${id_prefix}_line" class="section">
-                <span id="${id_prefix}_field" class="ui-widget-content" style="width: 80%;display: inline-block;">&nbsp</span>
-                <button id="${id_prefix}_button" class="ui-button ui-widget ui-corner-all">${select_button_text}</button>
-            </div>`)
-
-        // Open user select on button click:
-        sel_section.find(`#${id_prefix}_button`).click(function(){
-            open_file_select_dialog(`${id_prefix}_field`)
-        })
-
-        // Set up an observer to watch the attribute change and change the field
-        let field_selector = sel_section.find(`#${id_prefix}_field`)
-        define_attribute_observer(field_selector, 'selected_file', function(new_file){
-            field_selector.text(new_file)
-            // call the function for additional processing of user change:
-            on_file_change(new_file)
-        })
-
-        return sel_section
-    }
-}
 
 function resetFunction() {
     //arr = [];
     location.reload(true);
     // step2() -> nothing here gets called after reload bc the page reloads so the code reloads, so 
     // we need to find another way to get the reload to occur but then click the button to stay on the same tab
+}
+
+function open_file_select_dialog(to_populate_id) {
+    // TODO: reset selected user?..
+
+
+
+    // add stuff to the dialog:
+    file_select_dialog.append(all_files_selectlist)
+
+    file_select_dialog.attr('to_populate', to_populate_id)
+    file_select_dialog.dialog('open')
+}
+
+// file select
+function define_new_file_select_field(id_prefix, select_button_text, on_file_change = function(selected_user){}){
+    // Make the element:
+    let sel_section = $(`<div id="${id_prefix}_line" class="section">
+            <span id="${id_prefix}_field" class="ui-widget-content" style="width: 80%;display: inline-block;">&nbsp</span>
+            <button id="${id_prefix}_button" class="ui-button ui-widget ui-corner-all">${select_button_text}</button>
+        </div>`)
+
+    // Open user select on button click:
+    sel_section.find(`#${id_prefix}_button`).click(function(){
+        open_file_select_dialog(`${id_prefix}_field`)
+    })
+
+    // Set up an observer to watch the attribute change and change the field
+    let field_selector = sel_section.find(`#${id_prefix}_field`)
+    define_attribute_observer(field_selector, 'selected_file', function(new_file){
+        field_selector.text(new_file)
+        // call the function for additional processing of user change:
+        on_file_change(new_file)
+    })
+
+    return sel_section
 }
 
 $('#html-loc').find('*').uniqueId() 
