@@ -90,31 +90,35 @@ function step2() {
     // add rules
     var instructions = 
         `<div id="instructions" style="display:inline-block;width:40%;margin-left:40px;background-color:lightgrey;">
-            <h3 class="h3-pad how-to">How to Use</h3>
-            <ul>
-                <li>Click on "Permissions" to view and edit the permissions for a given file or folder</li>
-                <li>See extended list of permissions in "More"</li>
-                <li>Move popups to see instructions while editing</li>
-            </ul>
-            <h3 class="h3-pad">File Permission Rules</h3>
-            <ul>
-                <li>"Deny" permissions override "Allow"</li>
-                <li>Direct permissions override inherited</li>
-                <li>A file/folder may inherit permissions from its parent folder
-                    <ul>
-                        <li>Inheritance is turned on by default</li>
-                        <li>When a permission setting is affected by inheritance, the corresponding checkbox is disabled</li>
-                    </ul>
-                </li>
-            </ul>
-            <h3 class="h3-pad">How to Identify an Error</h3>
-            <ol>
-                <li>Check all direct permissions for the given file/folder and user in "Permissions"</li>
-                <li>If there are no issues, check the parent file/folder if inheritance is turned on</li>
-                <li>Continue to check parent file/folders is needed</li>
-                <li>Otherwise, the permission is denied</li>
-                <li>To confirm your answer, use the "Check Permissions" panel</li>
+            <center> <h3 class="h3-pad how-to">User Guide</h3> </center>
+
+            <h3> Add/Remove Permissions for a User </h3>
+            <ol> 
+                <li> Click <strong> Edit Permissions </strong> for the name of the file or folder you want to edit </li> 
+                <li> Select the <strong> Users/Group </strong> whose permissions you want to edit </li>
+                <ul>    
+                    <li> If the user isn't listed, click <strong> Add User </strong> and add the user </li> 
+                    <li> To remove a user from the file or folder, click on a User and then click <strong> Remove User </strong></li>
+                </ul>
+                <li> From the list of Permissions, click either <strong> Allow </strong> or <strong>Deny </strong> to change permissions </li> 
+                <ul> 
+                    <li> If both <strong> Allow </strong> and <strong>Deny</strong> are checked, <strong>Deny</strong> overrides <strong>Allow</strong></li>
+                </ul>
             </ol>
+            <h3> Find and Fix Errors </h3>
+            <ol> 
+                <li> Check all direct permissions for the given file/folder by clicking on the <strong>Edit Permissions</strong> button </li> 
+                <li>If there are no issues, go to <strong>More</strong> and check if inheritance is turned on with the blue check mark </li> 
+                <ul> 
+                    <li>If it is, check the permissions in the parent file or folder. Keep checking parent files/folders as needed </li> 
+                    <li> If not, continue </li> 
+                </ul> 
+                <li> Otherwise, the permission is denied </li> 
+                <li> To check the permissions for a specific user and file go to “Step 3: Check Permissions”</li> 
+            </ol>
+
+
+
         </div>`;
     $('#pageInformation').append(instructions);
     
