@@ -434,6 +434,8 @@ all_users_selectlist = define_single_select_list('user_select_list')
 // Make the elements which reperesent all users, and add them to the selectable
 all_user_elements = make_user_list('user_select', all_users)
 all_users_selectlist.append(all_user_elements)
+console.log("all users select list")
+console.log(all_users_selectlist)
 
 // Make the dialog:
 user_select_dialog = define_new_dialog('user_select_dialog2', 'Select User', {
