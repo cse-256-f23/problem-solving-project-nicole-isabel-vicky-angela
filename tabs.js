@@ -3,7 +3,15 @@ function step1() {
     $('#pageInformation').children().remove();
 
     // add text
-    var howTo = '<div><ul><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ul></div>';
+    var howToTitle = '<div class="mainTxt TxtTitle">How To Use';
+    var howTo = '<div class="mainTxt TxtBody"><ol><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>';
+    // let howToDiv = `
+    // <div class="mainTxt">
+    // <div class="TxtTitle">How To Use
+    // <div class="TxtBody"><ol><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>
+    // </div>
+    // `
+    $('#pageInformation').append(howToTitle);
     $('#pageInformation').append(howTo);
 }
 
