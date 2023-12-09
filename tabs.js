@@ -31,8 +31,8 @@ function step2() {
 
         if(file_obj.is_folder) {
             let folder_elem = $(`<div class='folder' id="${file_hash}_div" >
-                <h3 id="${file_hash}_header" style="display:flex">
-                <span class="oi oi-folder" id="${file_hash}_icon" style="padding:4px"/> ${file_obj.filename}
+                <h3 id="${file_hash}_header" style="display:flex; align-items:center;">
+                <span class="oi oi-folder" id="${file_hash}_icon" style="padding:4px; margin-right:8px;"/> <b>${file_obj.filename}</b>
                 <div style="width:100%; display:flex; justify-content:right"> <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                 </button></div>
                 </h3>
@@ -45,17 +45,22 @@ function step2() {
                 folder_elem.append(container_elem)
                 for(child_file of parent_to_children[file_hash]) {
                     let child_elem = make_file_element(child_file)
+                    console.log('child elem')
+                    console.log(child_elem)
                     container_elem.append(child_elem)
                 }
             }
             return folder_elem
         }
         else {
-            return $(`<div class='file'  id="${file_hash}_div">
-                <span class="oi oi-file" id="${file_hash}_icon"/> ${file_obj.filename}
+            return $(`<div class='file'  id="${file_hash}_div" style="display:flex; align-items:center; justify-content:space-between;">
+            <div>
+                <span class="oi oi-file" id="${file_hash}_icon" style='margin-right:8px;'/> <b>${file_obj.filename}</b>
+            </div>
+            <div>
                 <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
-                    
-                </button>
+                </button>       
+            </div>
             </div>`)
         }
     }
@@ -73,6 +78,11 @@ function step2() {
         collapsible: true,
         heightStyle: 'content'
     })
+
+    $('.ui-accordion-header-icon').css("padding-right","8px");
+    // $('.file').css('display', 'flex')
+    // $('.file').css('align-items', 'center')
+    // $('.file').css('justify-content', 'space-between')
 
     // -- Connect File Structure lock buttons to the permission dialog --
     //Adding Permissions on Lock icon/button
