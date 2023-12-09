@@ -65,7 +65,8 @@ ul, ol {
 
 .mainTxt{
     font-weight:300;
-    margin-top:10px;
+    margin-top:20px;
+    margin-bottom: 20px;
     padding:20px;
     width:60%;
 }

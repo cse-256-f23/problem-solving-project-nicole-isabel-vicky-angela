@@ -20,6 +20,9 @@ function step1() {
 // everything should save when clicking around tabs but should double check
 function step2() {
     $('#pageInformation').children().remove();
+    
+    var EditPermissionTitle = '<div class="mainTxt TxtTitle">Edit File Permissions';
+    $('#pageInformation').append(EditPermissionTitle);
 
     var filestructureDiv = '<div id="filestructure"></div>'
     $('#pageInformation').append(filestructureDiv);
