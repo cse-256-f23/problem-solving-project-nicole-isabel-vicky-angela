@@ -83,3 +83,15 @@ ul, ol {
     padding-top:8px;
     font-size: 28px;
 }
+
+.resetDiv {
+    display:flex;
+    justify-content: right;
+    margin-top:24px;
+    margin-left: 24px;
+}
+
+.reset-button {
+    background-color: #FF312E;
+    color:white;
+}

@@ -1,5 +1,3 @@
-//let file_elements_step2 = []
-
 function step1() {
     // remove other elements
     $('#pageInformation').children().remove();
@@ -32,12 +30,11 @@ function step2() {
         let file_hash = get_full_path(file_obj)
 
         if(file_obj.is_folder) {
-            let folder_elem = $(`<div class='folder' id="${file_hash}_div">
-                <h3 id="${file_hash}_header">
-                    <span class="oi oi-folder" id="${file_hash}_icon"/> ${file_obj.filename} 
-                    <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
-                        
-                    </button>
+            let folder_elem = $(`<div class='folder' id="${file_hash}_div" >
+                <h3 id="${file_hash}_header" style="display:flex">
+                <span class="oi oi-folder" id="${file_hash}_icon" style="padding:4px"/> ${file_obj.filename}
+                <div style="width:100%; display:flex; justify-content:right"> <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
+                </button></div>
                 </h3>
             </div>`)
 
@@ -140,16 +137,11 @@ function step2() {
 
     // add reset button
     var reset = `
-        <p> To refresh the page and undo all of your changes, click the Reset button. </p>
-        <button class="ui-button ui-widget ui-corner-all reset-button" id="ui-id-56" onclick="resetFunction()"> Reset Changes</button>`;
-    $('#pageInformation').append(reset);
+        <div class="resetDiv">
+            <button class="ui-button ui-widget ui-corner-all reset-button" id="ui-id-56" onclick="resetFunction()"> Reset Changes</button>
+        </div>`;
+    $('#filestructure').append(reset);
 
-
-    // some setup to save all files
-    // let all_buttons = document.getElementsByClassName("permbutton");
-    // for(let button of all_buttons) {
-    //     file_elements_step2.push(button.getAttribute("path")); 
-    // }
 }
 
 function step3() {
