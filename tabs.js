@@ -72,9 +72,6 @@ function step2() {
     })
 
     $('.ui-accordion-header-icon').css("padding-right","8px");
-    // $('.file').css('display', 'flex')
-    // $('.file').css('align-items', 'center')
-    // $('.file').css('justify-content', 'space-between')
 
     // -- Connect File Structure lock buttons to the permission dialog --
     //Adding Permissions on Lock icon/button
@@ -92,6 +89,8 @@ function step2() {
         e.stopPropagation() // don't propagate button click to element underneath it (e.g. folder accordion)
         // Emit a click for logging purposes:
         emitter.dispatchEvent(new CustomEvent('userEvent', { detail: new ClickEntry(ActionEnum.CLICK, (e.clientX + window.pageXOffset), (e.clientY + window.pageYOffset), e.target.id,new Date().getTime()) }))
+
+        $('.edit-dialog').css('border', '2px solid #31081F')
     });
 
     //---- some universal HTML set-up so you don't have to do it in each wrapper.html ----
