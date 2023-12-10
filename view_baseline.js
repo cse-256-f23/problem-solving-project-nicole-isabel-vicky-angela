@@ -8,26 +8,27 @@ show_starter_dialogs = false // set this to "false" to disable the survey and 3-
 // Make permissions dialog:
 perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
     // The following are standard jquery-ui options. See https://jqueryui.com/dialog/
-    height: 500,
+    height: 550,
     width: 600,
     modal: true,
-    position:{my: "left top", at: "left top", of:".mainTxt"},
+    position:{my: "left top", at: "left bottom", of:"#step1button"},
     dialogClass: "edit-dialog",
     buttons: {
-        //Changed OK to Apply
-        OK:{
-            text: "Apply",
-            id: "perm-dialog-ok-button",
-            click: function() {
-                $( this ).dialog( "close" );
-            }
-        },
         //Changed Advanced to More
         Advanced: {
             text: "More...",
             id: "perm-dialog-advanced-button",
             click: function() {
                 open_advanced_dialog(perm_dialog.attr('filepath'))
+            },
+            style: 'background-color: #445E59; color:white'
+        },
+        //Changed OK to Apply
+        OK:{
+            text: "Apply",
+            id: "perm-dialog-ok-button",
+            click: function() {
+                $( this ).dialog( "close" );
             }
         }
     }
@@ -38,7 +39,7 @@ perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
 obj_name_div = $('<div id="permdialog_objname" class="section"><b>Current file: </b><span id="permdialog_objname_namespan"></span> </div>')
 
 //Make the div with the explanation about special permissions/advanced settings:
-advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">Gray checkboxes represent inherited permissions. Click More for extended permissions, inheritance and owner settings.</div>')
+advanced_expl_div = $('<div id="permdialog_advanced_explantion_text" style="margin-bottom:16px;font-size:12px;">Disabled checkboxes are for inherited permissions.</div>')
 
 // Make the (grouped) permission checkboxes table:F
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
@@ -51,6 +52,8 @@ file_permission_users = define_single_select_list('permdialog_file_user_list', f
 })
 file_permission_users.css({
     'height':'auto',
+    'width': 'max-content',
+    'margin-bottom':'8px',
 })
 
 // Make button to add a new user to the list:
@@ -153,12 +156,36 @@ perm_remove_user_button.click(function(){
 
 // --- Append all the elements to the permissions dialog in the right order: --- 
 perm_dialog.append(obj_name_div)
-perm_dialog.append($('<div id="permissions_user_title">Users/Groups with Access:</div>'))
+perm_dialog.append($('<div id="permissions_user_title" style="margin-bottom:8px">Users/Groups with Access:</div>'))
+//TODO - get add/remove user on same line as scroll
+
+//let userAccessDiv = '<div id="userAccessDiv" style="display:flex">what the hell is going on</div>'
+//userAccessDiv.append()
+
+// let addRemButtonsDiv = '<div id="addRemButtonsDiv"></div>'
+// addRemButtonsDiv.append(perm_add_user_select)
+// addRemButtonsDiv.append(perm_remove_user_button)
+// userAccessDiv.append(addRemButtonsDiv)
+
+//perm_dialog.append(userAccessDiv)
+
 perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
-perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
+perm_add_user_select.append(perm_remove_user_button)
+
 perm_dialog.append(grouped_permissions)
 perm_dialog.append(advanced_expl_div)
+
+$('#perm-dialog-advanced-button').parent().parent().append('<div style="margin-left:8px;font-size:12px;">Click More for extended permissions, inheritance and owner settings</div>')
+$('#perm_add_user_button').css({
+    'background-color':'#445E59',
+    'color':'white'
+})
+
+$('#perm_remove_user').css({
+    'background-color':'#FF312E',
+    'color':'white'
+})
 
 // --- Additional logic for reloading contents when needed: ---
 //Define an observer which will propagate perm_dialog's filepath attribute to all the relevant elements, whenever it changes:
@@ -175,6 +202,7 @@ define_attribute_observer(perm_dialog, 'filepath', function(){
     //replace previous user list with the one we just generated:
     file_permission_users.empty()
     file_permission_users.append(file_user_list)
+    $('#permdialog_file_user_list').find('span').css('padding-right','10px');
 })
 
 
@@ -272,6 +300,13 @@ function open_advanced_dialog(file_path) {
 
     // open dialog:
     $(`#advdialog`).dialog('open')
+
+    $('.advanced-perm-dialog').css('border', '2px solid #31081F')
+
+    $('#adv_perm_edit').css({
+        'background-color':'rgb(68, 94, 89)',
+        'color':'white'
+    })
 }
 
 // Update Effective User display
@@ -328,6 +363,7 @@ let adv_contents = $(`#advdialog`).dialog({
     position: { my: "top", at: "top", of: $('#html-loc') },
     width: 700,
     height: 450,
+    dialogClass: "advanced-perm-dialog",
     modal: true,
     autoOpen: false,
     appendTo: "#html-loc",

@@ -64,6 +64,7 @@ ul, ol {
 
 #permdialog_objname{
     font-size: 18px;
+    margin-bottom: 16px;
 }
 
 #permdialog_objname_namespan{
@@ -112,19 +113,19 @@ ul, ol {
     text-align: left;
     outline: none;
     font-size: 15px;
-  }
+}
   
-  .active, .collapsible:hover {
+.active, .collapsible:hover {
     background-color: #60847c;
-  }
+}
 
-  .content {
+.content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
     line-height: 20px;
-  }
+}
 
 
 .resetDiv {
@@ -159,3 +160,6 @@ ul, ol {
     background: #595e44;  
 }
 
+.advanced-perm-dialog {
+
+}

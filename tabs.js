@@ -102,10 +102,7 @@ function step2() {
 
     // add rules
     var instructions = 
-
-        
         `
-        
         <div id="instructions" style="display:inline-block;width:40%;margin-left:40px;background-color:lightgrey;">
             <center> <h3 class="h3-pad how-to">User Guide</h3> </center>
             <br>
@@ -150,19 +147,19 @@ function step2() {
     $('#pageInformation').append(instructions);
 
     var coll = document.getElementsByClassName("collapsible");
-var i;
+    var i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+        content.style.display = "none";
+        } else {
+        content.style.display = "block";
+        }
+    });
     }
-  });
-}
 
     document.getElementById("instructions").style.background = "wheat"; 
     
