@@ -163,3 +163,9 @@ ul, ol {
 .effective_perm_name{
     padding-left:8px;
 }
+#newArrow { 
+    background-color:white; 
+    width: 15px;
+    height: 15px;
+    display:inline-block;
+}

@@ -72,7 +72,7 @@ permission_groups = {
         permissions.DELETE,
         permissions.DELETE_SUB,
     ],
-  
+    
 };
 perm_groupnames = Object.keys(permission_groups);
 perm_groupnames.push('Special_permissions');

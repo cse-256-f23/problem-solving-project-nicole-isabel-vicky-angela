@@ -108,7 +108,7 @@ function step2() {
             <br>
 
             <p> *To refresh the page and undo all of your changes, click the <strong>Reset </strong> button </p> <br>
-            <button type ="button" class="collapsible"> <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"> </span> <strong>Add/Remove Permissions for a User</strong></button> 
+            <button type ="button" class="collapsible"> <div id="newArrow"> <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" id="ui-id-12"> </div> </span> <strong>Add/Remove Permissions for a User</strong></button> 
             <div class="content"> 
         
             <p>
@@ -127,7 +127,7 @@ function step2() {
             </p>
             </div>
 
-            <button type="button" class="collapsible"> <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span> <strong> Find and Fix Errors </strong> </button>
+            <button type="button" class="collapsible"> <div id="newArrow"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s" > </div> </span><strong> Find and Fix Errors </strong> </button>
             <div class="content"> 
             <p>
             <ol> 
