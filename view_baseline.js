@@ -126,7 +126,7 @@ let are_you_sure_dialog = define_new_dialog('are_you_sure_dialog', "Are you sure
     }
 })
 // Add text to the dialog:
-are_you_sure_dialog.text('Do you want to remove permissions for this user?')
+are_you_sure_dialog.text('Do you want to remove access for this user? Make sure you have selected the CORRECT user from the list.')
 
 // Make actual "remove" button:
 //Changed Remove to Remove User
@@ -179,12 +179,14 @@ perm_dialog.append(advanced_expl_div)
 $('#perm-dialog-advanced-button').parent().parent().append('<div style="margin-left:8px;font-size:12px;">Click More for extended permissions, inheritance and owner settings</div>')
 $('#perm_add_user_button').css({
     'background-color':'#445E59',
-    'color':'white'
+    'color':'white',
+    'font-size':'14px'
 })
 
 $('#perm_remove_user').css({
     'background-color':'#FF312E',
-    'color':'white'
+    'color':'white',
+    'font-size':'14px'
 })
 
 // --- Additional logic for reloading contents when needed: ---
