@@ -41,6 +41,8 @@ obj_name_div = $('<div id="permdialog_objname" class="section"><b>Current file: 
 //Make the div with the explanation about special permissions/advanced settings:
 advanced_expl_div = $('<div id="permdialog_advanced_explantion_text" style="margin-bottom:16px;font-size:12px;">Disabled checkboxes are for inherited permissions.</div>')
 
+perm_expl_div = $('<div id="permdialog_advanced_explantion_text" style="margin-bottom:3px;font-size:14px;">Select a user from the list above to edit their permissions.</div>')
+
 // Make the (grouped) permission checkboxes table:F
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
 grouped_permissions.addClass('section') // add a 'section' class to the grouped_permissions element. This class adds a bit of spacing between this element and the next.
@@ -172,6 +174,7 @@ perm_dialog.append($('<div id="permissions_user_title" style="margin-bottom:8px"
 perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button)
+perm_dialog.append(perm_expl_div)
 
 perm_dialog.append(grouped_permissions)
 perm_dialog.append(advanced_expl_div)
