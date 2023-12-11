@@ -5,7 +5,7 @@ function step1() {
     // add text
     var howToTitle = '<div class="mainTxt TxtTitle">How to Use';
     $('#pageInformation').append(howToTitle);
-    var howTo = '<div class="mainTxt TxtBody"><ol><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>';
+    var howTo = '<div class="mainTxt TxtBody"><ol><li>Make sure you understand the prompt before starting</li><li>Follow each step to edit and check your permissions</li><li>Feel free to switch between tabs if needed</li></ol></div>';
     $('#pageInformation').append(howTo);
 }
 
