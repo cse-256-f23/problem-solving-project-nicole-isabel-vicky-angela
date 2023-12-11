@@ -101,7 +101,33 @@ ul, ol {
     font-size: 28px;
 }
 
+/* button style */
+.ui-button:active{
+    background: wheat;
+    color:#31081F;
+    border-color:#31081F;
+}
 
+#step1button{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+#step2button{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+#step3button{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
 
 .collapsible {
     background-color: #60847c;

@@ -180,7 +180,7 @@ function step3() {
     var CheckPermissionTitle = '<div class="mainTxt TxtTitle">Check Result Permissions';
     $('#pageInformation').append(CheckPermissionTitle);
 
-    var ChPermHowTo = '<div class="mainTxt TxtBody" style="font-size: 20px;">Check here to see effective permissions on a selected file and user.<ol><li>Select a user.</li><li>Select a file.</li><li>Click "i" icon to see explanation on what the permission includes.</li></ol></div>';
+    var ChPermHowTo = '<div class="mainTxt TxtBody" style="font-size: 20px;">Check here to see effective permissions on a selected file and user.<ol><li>Select a user.</li><li>Select a file.</li><li>A checkmark means the user is allowed to that permission. </li><li>Click "i" icon to see the reason for permission/deny.</li></ol></div>';
     $('#pageInformation').append(ChPermHowTo);
 
     $('#pageInformation').append('<div id="sidepanel" style=""></div>');
